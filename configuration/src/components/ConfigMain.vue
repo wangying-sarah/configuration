@@ -17,7 +17,7 @@
         <h3 class="title">{{ menuList[selectedIndex] }}</h3>
         <div class="list">
           <ul>
-            <li class="list-item" v-for="item in friends" :key="item">
+            <li class="list-item" v-for="item in friends" :key="item" :style="{'background-color':selectBackgroundColor}">
               <el-avatar
                 class="item-avatar"
                 icon="el-icon-user-solid"
@@ -53,10 +53,7 @@
         <span class="name">chatName</span>
         <div class="more-chat">
           <i class="el-icon-phone chat-icon" v-show="suportAudioCall"></i>
-          <i
-            class="el-icon-video-camera chat-icon"
-            v-show="suportVideoCall"
-          ></i>
+          <i class="el-icon-video-camera chat-icon" v-show="suportVideoCall"></i>
         </div>
       </div>
       <div class="chat-details">
@@ -80,6 +77,7 @@
         </div>
         <div class="input-box" v-show="supportSendMessage">
           <textarea
+          class="inputArea"
             name=""
             id=""
             cols="30"
@@ -106,6 +104,7 @@ export default {
       selectedIndex: 0,
       backgroundColor: "",
       color: "",
+      selectBackgroundColor:"",
       showLastMsg: false,
       suportAudioCall: true,
       suportVideoCall: true,
@@ -132,7 +131,7 @@ export default {
           lastMsg: "【表情】",
         },
       ],
-      textarea: "请输入内容",
+      textarea: "",
       messageList: [
         {
           name: "chatName",
@@ -161,10 +160,11 @@ export default {
       this.isRound = this.settings.style.isRound;
       this.backgroundColor = this.settings.style.backgroundColor;
       this.color = this.settings.style.fontColor;
+      this.selectBackgroundColor = this.settings.style.selectBackgroundColor;
       this.menuList = this.settings.sidebar.menuList;
       this.showLastMsg = this.settings.sidebar.showLastMsg;
       this.suportAudioCall = this.settings.main.suportAudioCall;
-      this.suportVideoCall = this.settings.main.suportVideoCallthis;
+      this.suportVideoCall = this.settings.main.suportVideoCall;
       this.supportSendMessage = this.settings.main.supportSendMessage;
       this.supportMsgEditing = this.settings.main.supportMsgEditing;
       this.supportMsgForwarding = this.settings.main.supportMsgForwarding;
@@ -223,6 +223,8 @@ export default {
 }
 .list-name {
   display: block;
+  height: 30px;
+  line-height: 30px;
 }
 .content {
   display: block;
@@ -255,7 +257,7 @@ export default {
   text-align: left;
   height: 60px;
   line-height: 60px;
-  background: #d2dfec;
+  /* background: #d2dfec; */
 }
 .list-item-last-info {
   float: left;
@@ -305,6 +307,10 @@ export default {
   height: 100px;
   box-sizing: border-box;
   border-top: 1px solid #ccc;
+}
+.inputArea{
+  resize: none;
+  background: inherit;
 }
 .extra {
   position: absolute;

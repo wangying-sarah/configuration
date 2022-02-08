@@ -23,6 +23,13 @@
         :predefine="fontColors"
       ></el-color-picker>
     </div>
+    <div class="select-container">
+      <span class="select-text">请选择字体颜色：</span>
+      <el-color-picker
+        v-model="selectBackgroundColor"
+        :predefine="selectBackgroundColor"
+      ></el-color-picker>
+    </div>
   </div>
 </template>
 
@@ -49,6 +56,7 @@ export default {
       ],
       fontColor: "red",
       fontColors: ["#eee", "#000", "#ccc", "#484848", "#409EFF"],
+      selectBackgroundColor:"#fff",
     };
   },
   name: "GlobelConfig",
@@ -72,6 +80,8 @@ export default {
         (this.color = this.settings.style.backgroundColor);
       this.settings.style.fontColor !== undefined &&
         (this.fontColor = this.settings.style.fontColor);
+        this.settings.style.selectBackgroundColor !== undefined &&
+        (this.selectBackgroundColor = this.settings.style.selectBackgroundColor);
     },
     goBack() {
       this.$emit("changeSetingStatus", false);
@@ -89,6 +99,9 @@ export default {
     },
     fontColor: function (newVal) {
       this.change("fontColor", newVal);
+    },
+    selectBackgroundColor: function (newVal) {
+      this.change("selectBackgroundColor", newVal);
     },
     settings: {
       handler() {

@@ -3,6 +3,7 @@ var settings = {
     backgroundColor: "#fff",
     fontColor: "#333",
     isRound: true,
+    selectBackgroundColor: "#d2dfec",
   },
   sidebar: {
     menuList: ["好友", "群组", "聊天室"],
